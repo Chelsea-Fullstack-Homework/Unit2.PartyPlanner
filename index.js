@@ -14,9 +14,23 @@ async function getEvents() {
     }
 }
 
-function render(events){
-    console.log(events);
-}
+//build a table row with parsed data.
+
+    function render(events){
+        let tBod = document.querySelector("tbody");
+        let tableRow = document.createElement("tr");
+        for(let event of events){
+            tableRow.innerHTML = "";
+            for(let i in event){
+                let cell = document.createElement("td");
+                let data = document.createTextNode(event[i]);
+                cell.appendChild(data);
+                tableRow.appendChild(cell);
+            }
+
+            tBod.appendChild(tableRow);
+        }
+    }
 
 async function run() {
     const events = await getEvents();
